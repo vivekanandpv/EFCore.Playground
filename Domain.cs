@@ -18,7 +18,7 @@ namespace EFCore.Playground
 
         public override string ToString()
         {
-            return $"Title: {Title}{Environment.NewLine}Author: {Author}{Environment.NewLine}Category: {Category}{Environment.NewLine}Pages: {NPages}{Environment.NewLine}Price: {Price}{Environment.NewLine}Publisher: {Publisher}";
+            return $"\tTitle: {Title}{Environment.NewLine}\tAuthor: {Author}{Environment.NewLine}\tCategory: {Category}{Environment.NewLine}\tPages: {NPages}{Environment.NewLine}\tPrice: {Price}{Environment.NewLine}\tPublisher: {Publisher}";
         }
     }
 }

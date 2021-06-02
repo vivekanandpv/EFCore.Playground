@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace EFCore.Playground
@@ -9,16 +10,33 @@ namespace EFCore.Playground
         {
             using (var context = new BookContext())
             {
-                var books = context.Books.ToList();
+                //  When using group by in EF/EF Core, please be aware of:
+                //  https://docs.microsoft.com/en-us/ef/core/querying/client-eval
+                var groupResult = 
+                    context
+                    .Books
+                    .AsEnumerable()             //  required. This forces the client evalutation
+                    .GroupBy(b => b.Category);
 
-                foreach (var book in books)
+                foreach (var g in groupResult)
                 {
-                    Console.WriteLine(book);
-                    Console.WriteLine("--------------------------------------------");
+                    Console.WriteLine(g.Key);
+
+                    foreach (var b in g)
+                    {
+                        Console.WriteLine($"{b}");
+                        Console.WriteLine("-------------------------------------------------");
+                    }
                 }
             }
 
            
         }
+    }
+
+    class BookGroup
+    {
+        public string Key { get; set; }
+        public IEnumerable<Book> Books { get; set; }
     }
 }
