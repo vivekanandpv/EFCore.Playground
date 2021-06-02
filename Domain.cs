@@ -21,4 +21,19 @@ namespace EFCore.Playground
             return $"Title: {Title}{Environment.NewLine}Author: {Author}{Environment.NewLine}Category: {Category}{Environment.NewLine}Pages: {NPages}{Environment.NewLine}Price: {Price}{Environment.NewLine}Publisher: {Publisher}";
         }
     }
+
+    public class BookViewModel
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public string Category { get; set; }
+        public int NPages { get; set; }
+        public double Price { get; set; }
+
+        public override string ToString()
+        {
+            return $"Title: {Title}{Environment.NewLine}Author: {Author}{Environment.NewLine}Category: {Category}{Environment.NewLine}Pages: {NPages}{Environment.NewLine}Price: {Price}";
+        }
+    }
 }
